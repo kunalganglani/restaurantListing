@@ -4,6 +4,26 @@
     background-color: #e2e2e2;
     box-shadow: 0 0 4px 0 grey;
   }
+
+  .recentSearch {
+    padding: 1em 3em;
+    color: grey;
+    display: none;
+    background: white;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    border-bottom: 1px solid grey;
+    margin: 1em;
+    cursor: pointer;
+    padding: 0.5em;
+  }
+
+  .listContainer{
+    display: inline-block;
+  }
   
   .chat-list-header {
     display: flex;

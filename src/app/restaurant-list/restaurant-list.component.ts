@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { RestaurantInterface } from "../restaurant-card/restaurant.interface";
 
 @Component({
@@ -7,32 +7,51 @@ import { RestaurantInterface } from "../restaurant-card/restaurant.interface";
   styleUrls: ["./restaurant-list.component.scss"]
 })
 export class RestaurantListComponent implements OnInit {
-  listRestaurantArray: RestaurantInterface[] = [
-    {
-      id: 1,
-      restaurant_name: "Sigmoid Threadplant",
-      rating: 3,
-      delivery_time: 15,
-      cuisines: ["Lettuce - Treviso"],
-      preview_image: "http://dummyimage.com/100x100.png/dddddd/000000"
-    },
-    {
-      id: 2,
-      restaurant_name: "Steen Mountain Thistle",
-      rating: 3,
-      delivery_time: 65,
-      cuisines: ["Bread Foccacia Whole"],
-      preview_image: "http://dummyimage.com/100x100.png/dddddd/000000"
-    },
-    {
-      id: 3,
-      restaurant_name: "Ajo Rockdaisy",
-      rating: 3,
-      delivery_time: 17,
-      cuisines: ["Cups 10oz Trans"],
-      preview_image: "http://dummyimage.com/100x100.png/5fa2dd/ffffff"
-    }
-  ];
+  @Input() listRestaurantArray: RestaurantInterface[];
+  pastSearchHistory: String[] = ["Pizza", "Dosa", "Chole"];
+
   constructor() {}
+  @ViewChild('restaurantList') restaurantList: ElementRef;
+  @ViewChild('pastSearches') pastSearches: ElementRef;
+  @ViewChild('searchInputTag') searchInputTag: ElementRef;
+  
+  
   ngOnInit() {}
+
+  updateSearch(event) {
+    const searchText = event.target.innerText;
+    this.searchInputTag.nativeElement.value = searchText;
+    this.triggerSearch(searchText);
+  }
+
+  togglePastSearch(visibility: Boolean) {
+    const pastSearchBlock = this.pastSearches.nativeElement;
+    if(visibility) {
+      pastSearchBlock.style.display = 'block';
+    } else {
+      pastSearchBlock.style.display = 'none';
+    }
+  }
+
+  updateSearchHistory(searchString) {
+    if(searchString!== '' && !this.pastSearchHistory.includes(searchString)) {
+      this.pastSearchHistory.shift();
+      this.pastSearchHistory.push(searchString);  
+    }
+  }
+  triggerSearch(searchString: string) {
+    this.updateSearchHistory(searchString);
+    this.togglePastSearch(false);
+    const filter = searchString.toUpperCase();
+    const list = this.restaurantList.nativeElement;
+    const restaurantBoxes = list.children;
+    for (let i = 0; i < restaurantBoxes.length; i++) {
+      const restaurantBoxText = list.children[i].innerText; // searches both: title and last message
+      if (restaurantBoxText.toUpperCase().indexOf(filter) > -1) {
+        restaurantBoxes[i].style.display = '';
+      } else {
+        restaurantBoxes[i].style.display = 'none';
+      }
+    }
+  }
 }
