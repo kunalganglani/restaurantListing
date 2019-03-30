@@ -5,6 +5,21 @@
     box-shadow: 0 0 4px 0 grey;
   }
 
+  .resultsFor {
+    padding: 1em 2em;
+    margin: 1em 0px;
+    font-size: 20px;
+    color: royalblue;
+    display: inline-block;
+  }
+  .searches {
+    color: white;
+    display: inline-block;
+    padding: 1em;
+    margin: 5px;
+    background: grey;
+    cursor: pointer;
+  }
   .sortFields {
     display: inline-flex;
     margin-left: 3em;

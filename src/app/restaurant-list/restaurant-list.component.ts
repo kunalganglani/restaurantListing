@@ -11,6 +11,8 @@ export class RestaurantListComponent implements OnInit {
   pastSearchHistory: String[] = ["Pizza", "Dosa", "Chole"];
   sortOrder: number = -1;
   deliverySortOrder: number = -1;
+  searchOnVisibility: boolean;
+  searchTextArray: String[] = ["south", "dosa"];
   constructor() {}
   @ViewChild('restaurantList') restaurantList: ElementRef;
   @ViewChild('pastSearches') pastSearches: ElementRef;
@@ -57,6 +59,13 @@ export class RestaurantListComponent implements OnInit {
   triggerSearch(searchString: string) {
     this.updateSearchHistory(searchString);
     this.togglePastSearch(false);
+    if(searchString === '') {
+      this.searchOnVisibility = false;
+    } else {
+      this.searchTextArray = searchString.split(' ');
+      this.searchOnVisibility = true;
+    }
+    
     const filter = searchString.toUpperCase();
     const list = this.restaurantList.nativeElement;
     const restaurantBoxes = list.children;
@@ -68,5 +77,7 @@ export class RestaurantListComponent implements OnInit {
         restaurantBoxes[i].style.display = 'none';
       }
     }
+
+
   }
 }

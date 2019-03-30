@@ -8,9 +8,20 @@
     <ul *ngFor="let item of pastSearchHistory">
       <li (click)="updateSearch($event)">{{item}}</li>
     </ul>
-  </div>
+  </div> 
+</div>
 
-  
+
+<div *ngIf="searchOnVisibility" class="searchOn">
+    <div class="resultsFor">
+        Showing Result For
+      </div>
+      <div class="listContainer" *ngFor = "let item of searchTextArray">
+          <div class="searches">
+              {{item}}
+            </div>
+      </div>
+      
 </div>
 <div class="sortFields">
   <div class="sortTitle">
