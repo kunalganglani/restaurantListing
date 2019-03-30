@@ -1,14 +1,16 @@
-<!-- <div>
-<img src= "http://dummyimage.com/100x100.png/dddddd/000000"/>
-</div> -->
-
 <div class="card">
-  <img src= "{{resItem.preview_image}}"/>
-  <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+  <img src="{{ resItem.preview_image }}" />
   <div class="container">
-    <h4><b>{{resItem.restaurant_name}}</b></h4> 
-    <p>{{resItem.cuisines}}</p>
-    <p>{{resItem.rating}}</p>
-    <p>{{resItem.delivery_time}} MINS</p>
+    <div>
+      <h4>
+        <b>{{ resItem.restaurant_name }}</b>
+      </h4>
+      <p>{{ resItem.cuisines }}</p>
+    </div>
+    <hr />
+    <div>
+      <div class="ratingStyle">{{ resItem.rating }}</div>
+      <div class="deliveryTimeStyle">{{ resItem.delivery_time }} MINS</div>
+    </div>
   </div>
 </div>

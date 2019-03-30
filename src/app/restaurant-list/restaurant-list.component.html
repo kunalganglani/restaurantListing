@@ -9,7 +9,21 @@
       <li (click)="updateSearch($event)">{{item}}</li>
     </ul>
   </div>
+
+  
 </div>
+<div class="sortFields">
+  <div class="sortTitle">
+    Sort By
+  </div>
+  <div (click)="sortByRating()" class="sortBy">
+    Ratings
+  </div>
+  <div  (click)="sortByDeliveryTime()" class="sortBy">
+    Delivery Time
+  </div>
+</div>
+
 <div #restaurantList class="restaurant-list">
   <div *ngFor="let restaurant of listRestaurantArray" class="listContainer">
     <app-restaurant-card [resItem]="restaurant"></app-restaurant-card>

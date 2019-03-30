@@ -9,7 +9,8 @@ import { RestaurantInterface } from "../restaurant-card/restaurant.interface";
 export class RestaurantListComponent implements OnInit {
   @Input() listRestaurantArray: RestaurantInterface[];
   pastSearchHistory: String[] = ["Pizza", "Dosa", "Chole"];
-
+  sortOrder: number = -1;
+  deliverySortOrder: number = -1;
   constructor() {}
   @ViewChild('restaurantList') restaurantList: ElementRef;
   @ViewChild('pastSearches') pastSearches: ElementRef;
@@ -22,6 +23,20 @@ export class RestaurantListComponent implements OnInit {
     const searchText = event.target.innerText;
     this.searchInputTag.nativeElement.value = searchText;
     this.triggerSearch(searchText);
+  }
+
+  sortByRating()  {
+    this.listRestaurantArray = this.listRestaurantArray.sort((a,b) => {
+      return this.sortOrder*(a.rating - b.rating);
+    });
+    this.sortOrder *= -1;
+  }
+
+  sortByDeliveryTime() {
+    this.listRestaurantArray = this.listRestaurantArray.sort((a,b) => {
+      return this.deliverySortOrder*(a.delivery_time - b.delivery_time);
+    });
+    this.deliverySortOrder *= -1;
   }
 
   togglePastSearch(visibility: Boolean) {
