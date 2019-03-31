@@ -52,8 +52,8 @@ export class RestaurantListComponent implements OnInit {
 
   updateSearchHistory(searchString) {
     if(searchString!== '' && !this.pastSearchHistory.includes(searchString)) {
-      this.pastSearchHistory.shift();
-      this.pastSearchHistory.push(searchString);  
+      this.pastSearchHistory.pop();
+      this.pastSearchHistory.unshift(searchString);  
     }
   }
   triggerSearch(searchString: string) {

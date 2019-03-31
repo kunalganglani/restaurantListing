@@ -45,8 +45,9 @@
 }
 
   .recentSearch {
-    padding: 1em 3em;
+    padding: 1em 3.8em;
     color: grey;
+    margin-top: 9px;
     display: none;
     background: white;
   }
@@ -62,6 +63,10 @@
 
   .listContainer{
     display: inline-block;
+  }
+
+  input {
+    height: 25px;
   }
   
   .chat-list-header {
